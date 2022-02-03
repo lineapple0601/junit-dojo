@@ -25,7 +25,6 @@ public class StringConverter {
 	private boolean checkWhitespaceConverted = false;
 	
 	private String convertChr(char chr) {
-		System.out.println(chr);
 		// 空白文字の場合
 		if (Character.isWhitespace(chr)) {
 			if (!checkWhitespaceConverted) {
