@@ -63,7 +63,7 @@ class StringConverterTest {
 	class 仕様４アルファベットと数字以外をアンダースコアに変換する {
 		@Test
 		void 記号をアンダースコアに変換する() {
-			assertEquals("_", converter.sanitizeName("$"));
+			assertEquals("___", converter.sanitizeName("$-$"));
 		}
 		@Test
 		void 全角文字をアンダースコアに変換する() {

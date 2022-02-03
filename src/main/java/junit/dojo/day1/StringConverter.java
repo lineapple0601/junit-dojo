@@ -35,6 +35,7 @@ public class StringConverter {
 		}
 		// 空白文字以外の場合
 		checkWhitespaceConverted = false;
+		// isLetterOrDigit()では「全角文字を"_"に置換する」のが大変になるので、分けました
 		if (Character.isUpperCase(chr)) {
 			return String.valueOf(Character.toLowerCase(chr));
 		}
