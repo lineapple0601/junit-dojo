@@ -1,7 +1,10 @@
 package junit.dojo.day1;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -70,12 +73,36 @@ class StringConverterTest {
 			assertEquals("_______", converter.sanitizeName("アイ上お下한글"));
 		}
 	}
+	
+	@Nested
+	class 例外処理 {
+		@Test
+		void 引数がNullの場合はNullPointerExceptionをスローする() {
+			String EXPECTED_ERROR_MSG = "引数にNullが入ってます。";
+			try {
+				converter.sanitizeName(null);
+				Assertions.fail();
+			} catch (NullPointerException e) {
+				assertThat(e.getMessage(), is(EXPECTED_ERROR_MSG));
+			}
+		}
+		@Test
+		void 引数が空文字の場合はIllegalArgumentExceptionをスローする() {
+			String EXPECTED_ERROR_MSG = "引数に空文字が入ってます。";
+			try {
+				converter.sanitizeName("");
+				Assertions.fail();
+			} catch (IllegalArgumentException e) {
+				assertThat(e.getMessage(), is(EXPECTED_ERROR_MSG));
+			}
+		}
+	}
 
 	@Nested
 	class 総合テスト {
 		@Test
 		void 総合テスト１() {
-			assertEquals("____abc-xyz-123_456__789", converter.sanitizeName("あい上オabc    xyz \n\t123$456%#789"));
+			assertThat(converter.sanitizeName("あい上オabc    xyz \n\t123$456%#789"), is("____abc-xyz-123_456__789"));
 		}
 	}
 }

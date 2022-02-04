@@ -1,6 +1,22 @@
 package junit.dojo.day1;
 
+import java.util.Objects;
+
+import com.google.common.annotations.VisibleForTesting;
+
 public class StringConverter {
+	
+	// Sprout method
+	@VisibleForTesting
+	void validate(String name) {
+		if (name == null) {
+			throw new NullPointerException("引数にNullが入ってます。");
+		}
+		if (name.length() == 0) {
+			throw new IllegalArgumentException("引数に空文字が入ってます。");
+		}
+	}
+	
 	/**
 	 * 引数に含まれる[a-z0-9]以外の文字を置換してください
 	 * 仕様1: [a-z0-9]の文字は置換しないでください
@@ -12,6 +28,8 @@ public class StringConverter {
 	 * @return @{code: "[a-z0-9_-]*"}のみを含む文字列
 	 */
 	public String sanitizeName(String name) {
+		validate(name); 
+		
 		char[] charArr = name.toCharArray();
 		StringBuilder result = new StringBuilder();
 
