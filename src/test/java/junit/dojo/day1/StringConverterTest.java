@@ -2,8 +2,10 @@ package junit.dojo.day1;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -22,11 +24,13 @@ class StringConverterTest {
 	class 仕様１アルファベットと数字は置換しない {
 		@Test
 		void 引数がabcxyzの場合はabcxyzを返す() {
-			assertEquals("abcxyz", converter.sanitizeName("abcxyz"));
+			assertThat(converter.sanitizeName("abcxyze"), is("abcxyze"));
+//			assertEquals("abcxyze", converter.sanitizeName("abcxyze"));
 		}
 		@Test
 		void 引数が0123456789の場合0123456789を返す() {
-			assertEquals("0123456789", converter.sanitizeName("0123456789"));
+			assertThat(converter.sanitizeName("0123456789"), is("0123456789"));
+//			assertEquals("0123456789", converter.sanitizeName("0123456789"));
 		}
 	}
 
@@ -34,23 +38,28 @@ class StringConverterTest {
 	class 仕様２空白をまとめてハイフンにする {
 		@Test
 		void 空白はハイフンに返す() {
-			assertEquals("-", converter.sanitizeName(" "));
+			assertThat(converter.sanitizeName(" "), is(" "));
+//			assertEquals("-", converter.sanitizeName(" "));
 		}
 		@Test
 		void 空白はまとめてハイフンに返す() {
-			assertEquals("-", converter.sanitizeName("      "));
+			assertThat(converter.sanitizeName("      "), is("-"));
+//			assertEquals("-", converter.sanitizeName("      "));
 		}
 		@Test
 		void 改行はハイフンに返す() {
-			assertEquals("-", converter.sanitizeName("\n"));
+			assertThat(converter.sanitizeName("\n"), is("-"));
+//			assertEquals("-", converter.sanitizeName("\n"));
 		}
 		@Test
 		void インデントはハイフンに返す() {
-			assertEquals("-", converter.sanitizeName("\t"));
+			assertThat(converter.sanitizeName("\t"), is("-"));
+//			assertEquals("-", converter.sanitizeName("\t"));
 		}
 		@Test
 		void 連続する空白と改行とインデントはまとめてハイフンに返す() {
-			assertEquals("-", converter.sanitizeName("\t \n"));
+			assertThat(converter.sanitizeName("\t \n"), is("-"));
+//			assertEquals("-", converter.sanitizeName("\t \n"));
 		}
 	}
 
@@ -58,7 +67,9 @@ class StringConverterTest {
 	class 仕様３大文字を小文字に置換する {
 		@Test
 		void 大文字のみ小文字に変換する() {
-			assertEquals("1abcxyz9", converter.sanitizeName("1aBcXyZ9"));
+			assertThat(converter.sanitizeName("1aBcXyZ9"), is("1abcxyz9"));
+//			assertThat(converter.sanitizeName("1aBcXyZ9"), is(equalToIgnoringCase("1ABCXYZ9")));
+//			assertEquals("1abcxyz9", converter.sanitizeName("1aBcXyZ9"));
 		}
 	}
 
@@ -81,6 +92,9 @@ class StringConverterTest {
 			String EXPECTED_ERROR_MSG = "引数にNullが入ってます。";
 			try {
 				converter.sanitizeName(null);
+				// With Sprout Class
+				StringConverter.Validator validator = new StringConverter.Validator();
+				validator.validate(null);
 				Assertions.fail();
 			} catch (NullPointerException e) {
 				assertThat(e.getMessage(), is(EXPECTED_ERROR_MSG));
@@ -91,6 +105,9 @@ class StringConverterTest {
 			String EXPECTED_ERROR_MSG = "引数に空文字が入ってます。";
 			try {
 				converter.sanitizeName("");
+				// With Sprout Class
+				StringConverter.Validator validator = new StringConverter.Validator();
+				validator.validate("");
 				Assertions.fail();
 			} catch (IllegalArgumentException e) {
 				assertThat(e.getMessage(), is(EXPECTED_ERROR_MSG));
