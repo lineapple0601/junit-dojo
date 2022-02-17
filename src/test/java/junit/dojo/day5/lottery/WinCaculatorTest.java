@@ -18,7 +18,6 @@ import org.mockito.quality.Strictness;
 class WinCaculatorTest {
 
 	WinCalculator it = new WinCalculator();
-	LotteryFactory factory = new LotteryFactory();
 	
 	@Mock
 	IScratch scratch;
