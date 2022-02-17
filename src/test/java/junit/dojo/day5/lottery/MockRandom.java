@@ -11,9 +11,11 @@ public class MockRandom extends Random {
 	
 	public int nextIntCnt = 0;
 	
-	// Iteratorはそのまま受け取ることは危険
-	// Iterator / InputStream / OutputStreamなど、
-	// Indexがどうなっているか分からないのでListで受け取ってpositionをにすること
+	/** 
+	 * Iteratorはそのまま受け取ることは危険
+	 * Iterator / InputStream / OutputStreamなど、
+	 * 受け取る時のIndexがどうなっているか分からないので、Listで受け取ってからIteratorにすること 
+	 **/
 	public MockRandom(List<Integer> list) {
 		this.iterator = list.iterator();
 	}
