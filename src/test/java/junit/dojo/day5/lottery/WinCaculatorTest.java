@@ -28,7 +28,7 @@ class WinCaculatorTest {
 	}
 	
 	@Nested
-	class Scratchの値をチェックする {
+	class IScratchをMockしてテストを実行する {
 		@Test
 		void 一でワンビンゴになる場合() {
 			int[][] scratchArr = {
@@ -57,6 +57,33 @@ class WinCaculatorTest {
 					when(scratch.getValue(i, j)).thenReturn(scratchArr[i][j]);
 				}
 			}
+		}
+	}
+	
+	MockScratch mockScratch = new MockScratch();
+	
+	@Nested
+	class MockScratchを実装してテストを実行する {
+		@Test
+		void 一でワンビンゴになる場合() {
+			int[][] scratchArr = {
+					{1, 1, 1},
+					{2, 3, 4},
+					{5, 6, 7}
+			};
+			mockScratch.setSheet(scratchArr);
+			assertThat(it.check(mockScratch), is(10L));
+		}
+		
+		@Test
+		void 四でワンビングのになる場合() {
+			int[][] scratchArr = {
+					{1, 2, 3},
+					{5, 6, 7},
+					{4, 4, 4}
+			};
+			mockScratch.setSheet(scratchArr);
+			assertThat(it.check(mockScratch), is(40L));
 		}
 	}
 }
