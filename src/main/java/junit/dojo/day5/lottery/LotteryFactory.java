@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import junit.dojo.day5.IScratch;
 
 /**
  * ランダムにくじを生成するファクトリクラスです。
@@ -35,7 +34,7 @@ public class LotteryFactory {
 	 * ランダムな数字が書かれたくじを生成します。
 	 * @return
 	 */
-	public IScratch draw() {
+	public Scratch draw() {
 		return new Scratch(rng);
 	}
 
