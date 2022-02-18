@@ -14,13 +14,18 @@ import java.util.Random;
 public class Scratch {
 	int[][] sheet;
 
-	Scratch(Random rng) {
-		sheet = new int[3][3];
+	protected Scratch(Random rng) {
+		sheet = makeSheet(rng);
+	}
+	
+	protected int[][] makeSheet(Random rng) {
+		int[][] sheet = new int[3][3];
 		for (int row = 0; row < 3; row++) {
 			for(int col = 0; col < 3; col++) {
 				sheet[row][col] = rng.nextInt(9) + 1;
 			}
 		}
+		return sheet;
 	}
 
 	public int getValue(int row, int col) {
