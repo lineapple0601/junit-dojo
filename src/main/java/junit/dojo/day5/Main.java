@@ -1,6 +1,7 @@
 package junit.dojo.day5;
 
 import junit.dojo.day5.lottery.LotteryFactory;
+import junit.dojo.day5.lottery.Scratch;
 
 public class Main {
 
@@ -16,7 +17,7 @@ public class Main {
 		WinCalculator calc = new WinCalculator();
 
 		// くじを引く
-		IScratch scratch = factory.draw();
+		Scratch scratch = factory.draw();
 
 		// くじを表示
 		System.out.println("くじを引きました");

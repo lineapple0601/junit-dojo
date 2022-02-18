@@ -1,5 +1,7 @@
 package junit.dojo.day5;
 
+import junit.dojo.day5.lottery.Scratch;
+
 public class WinCalculator {
 
 	/**
@@ -21,7 +23,7 @@ public class WinCalculator {
 	 * @param scratch 宝くじ
 	 * @return あたり金額（はずれの場合は0を返す）
 	 */
-	public long check(IScratch scratch) {
+	public long check(Scratch scratch) {
 		int score = 1;
 		// 行ビンゴ
 		for( int row = 0; row < 3; row++) {

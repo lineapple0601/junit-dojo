@@ -1,7 +1,6 @@
 package junit.dojo.day5.lottery;
 
 import java.util.Random;
-import junit.dojo.day5.IScratch;
 
 /**
  * スクラッチくじを実装したクラスです。
@@ -12,7 +11,7 @@ import junit.dojo.day5.IScratch;
  * @author autotaker
  *
  */
-class Scratch implements IScratch {
+public class Scratch {
 	int[][] sheet;
 
 	Scratch(Random rng) {
@@ -24,7 +23,6 @@ class Scratch implements IScratch {
 		}
 	}
 
-	@Override
 	public int getValue(int row, int col) {
 		return sheet[row][col];
 	}
