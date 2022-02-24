@@ -11,22 +11,32 @@ import java.util.Random;
  * @author autotaker
  *
  */
-public class Scratch {
+public class Scratch implements IScratch {
 	int[][] sheet;
 
-	Scratch(Random rng) {
-		sheet = new int[3][3];
+	public Scratch(Random rng) {
+		this(new int[3][3]);
+		this.sheet = makeSheet(rng);
+	}
+	
+	public Scratch(int[][] sheet) {
+		this.sheet = sheet;
+	}
+	
+	private int[][] makeSheet(Random rng) {
+		int[][] randomSheet = new int[3][3];
 		for (int row = 0; row < 3; row++) {
 			for(int col = 0; col < 3; col++) {
-				sheet[row][col] = rng.nextInt(9) + 1;
+				randomSheet[row][col] = rng.nextInt(9) + 1;
 			}
 		}
+		return randomSheet;
 	}
-
+	
+	@Override
 	public int getValue(int row, int col) {
 		return sheet[row][col];
 	}
-
 
 	@Override
 	public String toString() {

@@ -34,7 +34,7 @@ public class LotteryFactory {
 	 * ランダムな数字が書かれたくじを生成します。
 	 * @return
 	 */
-	public Scratch draw() {
+	public IScratch draw() {
 		return new Scratch(rng);
 	}
 
