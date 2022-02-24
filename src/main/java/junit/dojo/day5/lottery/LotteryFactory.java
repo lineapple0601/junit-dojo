@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.google.common.annotations.VisibleForTesting;
 
-import junit.dojo.day5.IScratch;
 
 /**
  * ランダムにくじを生成するファクトリクラスです。

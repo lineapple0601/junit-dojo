@@ -1,5 +1,7 @@
 package junit.dojo.day5;
 
+import junit.dojo.day5.lottery.IScratch;
+
 public class WinCalculator {
 
 	/**

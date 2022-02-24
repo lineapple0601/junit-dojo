@@ -1,5 +1,6 @@
 package junit.dojo.day5;
 
+import junit.dojo.day5.lottery.IScratch;
 import junit.dojo.day5.lottery.LotteryFactory;
 
 public class Main {
