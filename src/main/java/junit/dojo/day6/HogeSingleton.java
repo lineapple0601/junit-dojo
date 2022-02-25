@@ -3,7 +3,7 @@ package junit.dojo.day6;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HogeSingleton {
+public class HogeSingleton implements ISingleton {
 
         private Map<String, String> valueByKey;
 
@@ -12,16 +12,17 @@ public class HogeSingleton {
                 throw new RuntimeException();//呼べないようにわざと
         }
 
-        public String getValue(String key) {
+        @Override
+		public String getValue(String key) {
                 return valueByKey.get(key);
         }
 
-        public static HogeSingleton instance() {
+        public static ISingleton instance() {
                 return HogeControlInstanceHolder.INSTANCE;
         }
 
         public static class HogeControlInstanceHolder {
-                private static final HogeSingleton INSTANCE = new HogeSingleton();
+                private static final ISingleton INSTANCE = new HogeSingleton();
         }
 
 }
