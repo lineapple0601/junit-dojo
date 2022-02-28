@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 
 import junit.dojo.day6.HogeProcessor;
 import junit.dojo.day6.HogeSingleton;
+import junit.dojo.day6.ISingleton;
 
 @MockitoSettings
 class HogeProcessorTest {
@@ -22,7 +23,7 @@ class HogeProcessorTest {
 	HogeProcessor it = new HogeProcessor();
 	
 	@Mock
-	HogeSingleton hs;
+	ISingleton hs;
 	MockedStatic<HogeSingleton> hsMockStatic = mockStatic(HogeSingleton.class);
 	
 	@BeforeEach
